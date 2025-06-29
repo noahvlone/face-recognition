@@ -4,9 +4,15 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 import time
+import os
+import gdown
 
 # Load model
 model = tf.keras.models.load_model("model_cnn_klasifikasi.h5")
+if not os.path.exists(model):
+    file_id = "1A2Y2b8KiIxpfEVlc_UIRpqrXPXpbbTsn"
+    url = f"https://drive.google.com/uc?id={file_id}"
+    gdown.download(url, model, quiet=False)
 
 # Label kelas
 class_labels = ['agung', 'farhan']  # ganti sesuai urutan train_generator.class_indices
